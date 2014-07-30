@@ -19,7 +19,7 @@ body {
 }
 
 
-.node circle, .node rect {
+.node circle, .node rect, #selectPsy rect {
 	fill: #8B8B7A;
 	stroke: #cfcfcd;
 	stroke-width: .2px;

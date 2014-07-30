@@ -37,12 +37,8 @@ d3.csv(data, function (d) {
 			//.style("position", "relative");
     /*
      *	Left menu design
-     */
-    d3.select("body").select("#left-sidebar")
-        .style("top", "70px")
-        .style("left", function (d) {
-            return width + "px";
-        });
+    */
+	leftMenuDesign();
 		
 	//vis(d);
 	timeline();
@@ -123,15 +119,15 @@ function vis(links) {
 			var form = d3.select("#symptomForm");
 			var sympArray = d3.values(symptom);
 			if(form[0][0][1].checked == true && sympArray[d.index].symp[0] == "1") {	// sore
-                return color[0];
-            } else if (form[0][0][2].checked == true && sympArray[d.index].symp[1] == "1") { // runnynose
                 return color[1];
-            } else if (form[0][0][3].checked == true && sympArray[d.index].symp[2] == "1") { // fever
+            } else if (form[0][0][2].checked == true && sympArray[d.index].symp[1] == "1") { // runnynose
                 return color[2];
-            } else if (form[0][0][4].checked == true && sympArray[d.index].symp[3] == "1") { // nausea
+            } else if (form[0][0][3].checked == true && sympArray[d.index].symp[2] == "1") { // fever
                 return color[3];
+            } else if (form[0][0][4].checked == true && sympArray[d.index].symp[3] == "1") { // nausea
+                return color[4];
 			} else if (form[0][0][0].checked == true && (sympArray[d.index].symp[0] == "1" || sympArray[d.index].symp[1] == "1" || sympArray[d.index].symp[2] == "1" || sympArray[d.index].symp[3] == "1")) { // any
-				return color[4];
+				return color[0];
             } else {
 				return "#8B8B7A";
 			}
@@ -158,15 +154,15 @@ function vis(links) {
 			var form = d3.select("#symptomForm");
 			var sympArray = d3.values(symptom);
 			if(form[0][0][1].checked == true && sympArray[d.index].symp[0] == "1") {	// sore
-                return color[0];
-            } else if (form[0][0][2].checked == true && sympArray[d.index].symp[1] == "1") { // runnynose
                 return color[1];
-            } else if (form[0][0][3].checked == true && sympArray[d.index].symp[2] == "1") { // fever
+            } else if (form[0][0][2].checked == true && sympArray[d.index].symp[1] == "1") { // runnynose
                 return color[2];
-            } else if (form[0][0][4].checked == true && sympArray[d.index].symp[3] == "1") { // nausea
+            } else if (form[0][0][3].checked == true && sympArray[d.index].symp[2] == "1") { // fever
                 return color[3];
+            } else if (form[0][0][4].checked == true && sympArray[d.index].symp[3] == "1") { // nausea
+                return color[4];
 			} else if (form[0][0][0].checked == true && (sympArray[d.index].symp[0] == "1" || sympArray[d.index].symp[1] == "1" || sympArray[d.index].symp[2] == "1" || sympArray[d.index].symp[3] == "1")) { // any
-				return color[4];
+				return color[0];
             } else { // none
 				return "#8B8B7A";
 			}
@@ -346,15 +342,15 @@ function fluRadio(radio) {
         .selectAll("circle, rect")
         .style("fill", function (d) {
             if (radio.value == "sore" && sympArray[d.index].symp[0] == "1") {
-                return color[0];
-            } else if (radio.value == "runnynose" && sympArray[d.index].symp[1] == "1") {
                 return color[1];
-            } else if (radio.value == "fever" && sympArray[d.index].symp[2] == "1") {
+            } else if (radio.value == "runnynose" && sympArray[d.index].symp[1] == "1") {
                 return color[2];
-            } else if (radio.value == "nausea" && sympArray[d.index].symp[3] == "1") {
+            } else if (radio.value == "fever" && sympArray[d.index].symp[2] == "1") {
                 return color[3];
+            } else if (radio.value == "nausea" && sympArray[d.index].symp[3] == "1") {
+                return color[4];
             } else if (radio.value == "any" && (sympArray[d.index].symp[0] == "1" || sympArray[d.index].symp[1] == "1" || sympArray[d.index].symp[2] == "1" || sympArray[d.index].symp[3] == "1")) {
-				return color[4];
+				return color[0];
 			}
         });
 }
@@ -553,4 +549,35 @@ function table(d) {
 	}
 	
 	drawTable(dataList, "#chart", { width: 240, height: 190 }, valueFunc, textFunc, columns);
+}
+
+/* Lef side bar */
+function leftMenuDesign() {
+    var leftSide = d3.select("body").select("#left-sidebar");
+		
+	leftSide
+        .style("top", "70px")
+        .style("left", function (d) {
+            return width + "px";
+        });
+	
+	var circleTag = function(i) {
+		return '<svg width=8 height=8><circle r=4 cx=4 cy=4 fill='+color[i]+'></svg> ';
+	}
+	
+	var sympForm = $("#symptomForm");
+	sympForm.find("#any")
+		.after(circleTag(0));
+	sympForm.find("#sore")
+	.after(circleTag(1));
+	sympForm.find("#runnynose")
+	.after(circleTag(2));
+	sympForm.find("#fever")
+	.after(circleTag(3));
+	sympForm.find("#nausea")
+	.after(circleTag(4));
+	
+	var psyForm = $("#psysymptomForm");
+	psyForm.find("#any_psy, #stressed, #depressed")
+		.after('<svg width=7 height=7><rect width=7 height=7></svg> ');
 }
