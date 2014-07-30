@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!--<script src="http://d3js.org/d3.v2.js?2.9.1"></script>-->
+<!--<script src=".\d3-master\d3.js"></script>-->
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-min.css" />
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="net_graph.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="table.js"></script>
+</head>
+
+<body>
+	<div id="whole">
+		<div id="header">
+			<div id="title">
+				<small class="subtitle">A Snapshot of the</small><p class="sub">
+				<h1>
+					Network of Symptoms
+				</h1>
+			</div>
+		</div>
+		<div id="left-sidebar">
+			<div id="left-sidebar-container">
+				<h2>Flu Symptoms</h2>
+				<div id="selectFlu">
+					<form name="symptom" id="symptomForm">
+						<input type="radio" name="symptom" id="any" value="any" onclick="fluRadio(this)">Any
+						<br>
+						<input type="radio" name="symptom" id="sore" value="sore" onclick="fluRadio(this)" />Sore Throat / Cough
+						<br>
+						<input type="radio" name="symptom" id="runnynose" value="runnynose" onclick="fluRadio(this)">Runnynose / Congestion / Sneezing
+						<br>
+						<input type="radio" name="symptom" id="fever" value="fever" onclick="fluRadio(this)">Fever
+						<br>
+						<input type="radio" name="symptom" id="nausea" value="nausea" onclick="fluRadio(this)">Nausea / Vomiting / Diarrhea
+						<br>
+						<input type="radio" name="symptom" id="none" value="none" checked="true" onclick="fluRadio(this)">None
+						<br>
+					</form>
+				</div>
+				<h2>Psycho Symptoms</h2>
+				<div id="selectPsy">
+					<form name="psysymptom" id="psysymptomForm">
+						<input type="radio" name="psysymptom" id="any_psy" value="any_psy" onclick="psyRadio(this)" />Any
+						<br>
+						<input type="radio" name="psysymptom" id="depressed" value="depressed" onclick="psyRadio(this)" />Sad / Depressed
+						<br>
+						<input type="radio" name="psysymptom" id="stressed" value="stressed" onclick="psyRadio(this)">Stressed
+						<br>
+						<input type="radio" name="psysymptom" id="none" value="none" checked="true" onclick="psyRadio(this)">None
+						<br>
+					</form>
+				</div>
+				<div id="chart">
+				<h2>Sum of Interactions</h2>
+				</div>
+			</div>
+		</div>
+	</div>

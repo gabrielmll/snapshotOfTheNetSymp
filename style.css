@@ -1,0 +1,128 @@
+body {
+	background-color:rgb(231, 231, 228);
+}
+
+#whole {
+	position: absolute;
+	left: 50%;
+	margin-left: -605px;
+	top: 10px;
+	border-left: 10px solid rgba(207,207,205,0.5); 
+}
+
+/* Vis */
+.link {
+	fill: none;
+	stroke: #8B8B7A;
+	stroke-width: .3px;
+	opacity: .3;
+}
+
+
+.node circle, .node rect {
+	fill: #8B8B7A;
+	stroke: #cfcfcd;
+	stroke-width: .2px;
+}
+
+.node rect {
+	/*stroke: #5a5a9b;*/
+}
+
+text {
+	font: 10px sans-serif;
+	pointer-events: none;
+}
+
+#graph {
+	background-color: rgba(247, 247, 246, 0.5);
+}
+
+
+/* Interface */
+#header{
+	position: relative;
+	background-color:rgba(207,207,205,0.5);
+	width:100%;
+	height: 70px;
+	min-width:1210px;
+	margin: auto;
+}
+div#title{
+	position: relative;
+	top: 25%;
+	display: table;
+	margin: 0 auto;
+}
+
+#left-sidebar
+{
+    position:absolute;
+    width:250px;   
+}
+#left-sidebar-container
+{
+    height: 509px;
+	background-color:rgba(207,207,205,0.5);
+    /*border: 1px solid rgba(136,148,160,0.1);*/
+	border: none;
+    padding: 5px 5px 5px 5px;
+}
+
+/* timeline */
+
+#timeline {
+	width: 960px;
+	height: 35px;
+	border: none;
+	background-color:rgba(207,207,205,0.5);
+}
+
+.axis path, .axis line, .daily_axis {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.daily_axis text{
+	display: none;
+}
+
+.brush {
+	fill: #ccc;
+	opacity: 0.6;
+}
+
+.handle{
+	opacity: 0.4;
+}
+
+/* Table */
+
+.bodyTable tbody {
+	background-color:rgba(207,207,205,0.1);
+}
+.bodyTable td {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.bodyTable tr {
+	height: 10px;
+}
+
+.bodyTable tr:hover {
+	background-color:grey;
+}
+
+th {
+	text-align: center;
+}
+.headerTable th:hover {
+	background-color:grey;
+}
+
+.scroll {
+	overflow: auto;
+}
