@@ -150,6 +150,8 @@ function vis(links) {
 	node.append("rect")
 		.attr("width", 7)
 		.attr("height", 7)
+		.attr("x", -3.5)
+		.attr("y", -3.5)
 		.style("fill", function(d) {
 			var form = d3.select("#symptomForm");
 			var sympArray = d3.values(symptom);
@@ -249,7 +251,9 @@ function vis(links) {
 			})
 			.transition().duration(750)
 			.attr("width", 28)
-			.attr("height", 28);
+			.attr("height", 28)
+			.attr("x", -14)
+			.attr("y", -14);
 
         // Apply effects on lines
         svg.selectAll("line").filter(function (d) {
@@ -273,7 +277,9 @@ function vis(links) {
 		d3.select("svg#graph").selectAll("rect").transition()
 			.duration(750)
 			.attr("width", 7)
-			.attr("height", 7);
+			.attr("height", 7)
+			.attr("x", -3.5)
+			.attr("y", -3.5);
 
         d3.select("svg#graph").selectAll("line")
             .transition().duration(750)
