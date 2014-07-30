@@ -425,7 +425,8 @@ function timeline() {
 	
 	var svg = d3.select("div#timeline")
 		.append("svg")
-			.attr("width", width);
+			.attr("width", width)
+			.attr("height", 30);
 	
 	var context = svg.append("g")
 		.attr("class", "context");
