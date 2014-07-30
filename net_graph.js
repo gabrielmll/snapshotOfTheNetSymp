@@ -302,6 +302,7 @@ function vis(links) {
 				.style("stroke-width", ".3px");
 		}
 	}
+	
 	function highlight(d) {
 		var i = d.index;
 		//console.log(d);

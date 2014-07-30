@@ -50,7 +50,23 @@ function drawTable(data, tableid, dimensions, valueFunc, textFunc, columns) {
 
     var tbody = inner.append("tbody");
     // Create a row for each object in the data and perform an intial sort.
-    var rows = tbody.selectAll("tr").data(data).enter().append("tr").sort(sortValueDescending);
+    var rows = tbody.selectAll("tr").data(data).enter().append("tr").sort(sortValueDescending)
+		.on("mouseover", function(thisCircle){
+			var toHighlight = d3.selectAll(".node").filter(function(d) {return d.name == thisCircle.id})
+				toHighlight.select("circle")
+					.attr("r", 16);
+				toHighlight.select("rect")
+					.attr("width", 28)
+					.attr("height", 28);
+		})
+		.on("mouseout", function(thisCircle) {
+			var toHighlight = d3.selectAll(".node").filter(function(d) {return d.name == thisCircle.id})
+				toHighlight.select("circle")
+					.attr("r", 4);
+				toHighlight.select("rect")
+					.attr("width", 7)
+					.attr("height", 7);		
+		});
 
     // Create a cell in each row for each column
     var cells = rows.selectAll("td")
