@@ -1,5 +1,5 @@
 body {
-	background-color:rgb(231, 231, 228);
+	background:url("texture-noise.png");
 }
 
 #whole {
@@ -7,7 +7,7 @@ body {
 	left: 50%;
 	margin-left: -605px;
 	top: 10px;
-	border-left: 10px solid rgba(207,207,205,0.5); 
+	border-left: 10px solid rgba(227, 227, 228, 0.5);
 }
 
 /* Vis */
@@ -35,14 +35,14 @@ text {
 }
 
 #graph {
-	background-color: rgba(247, 247, 246, 0.5);
+	background-color: rgba(227, 227, 228, 0.2);
 }
 
 
 /* Interface */
 #header{
 	position: relative;
-	background-color:rgba(207,207,205,0.5);
+	background-color:rgba(227, 227, 228, 0.5);
 	width:100%;
 	height: 70px;
 	min-width:1210px;
@@ -63,7 +63,7 @@ div#title{
 #left-sidebar-container
 {
     height: 509px;
-	background-color:rgba(207,207,205,0.5);
+	background-color:rgba(227, 227, 228, 0.5);
     /*border: 1px solid rgba(136,148,160,0.1);*/
 	border: none;
     padding: 5px 5px 5px 5px;
@@ -75,7 +75,7 @@ div#title{
 	width: 960px;
 	height: 35px;
 	border: none;
-	background-color:rgba(207,207,205,0.5);
+	background-color:rgba(227, 227, 228, 0.5);
 }
 
 .axis path, .axis line, .daily_axis {
@@ -100,7 +100,7 @@ div#title{
 /* Table */
 
 .bodyTable tbody {
-	background-color:rgba(207,207,205,0.1);
+	background-color:rgba(224, 212, 187,0.1);
 }
 .bodyTable td {
 	white-space: nowrap;
