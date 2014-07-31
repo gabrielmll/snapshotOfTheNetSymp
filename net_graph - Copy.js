@@ -85,12 +85,11 @@ function vis(links) {
         .nodes(d3.values(nodes))
         .links(links)
         .size([width, height])
-        /* This only matters if nodes aren't fixed
-		.linkDistance(function (d) {
+        .linkDistance(function (d) {
             return 200 / d.weight;
         })
         .charge(-100)
-		.friction(0.7)*/
+		.friction(0.7)
         .on("tick", tick)
         .start();
 
@@ -101,22 +100,6 @@ function vis(links) {
     var link = svg.selectAll(".link")
         .data(force.links())
         .enter().append("line")
-		/*.attr("stroke-width", function (d) {
-            //return d.weight / 50;
-			var thickness = d3.scale.linear()
-				.domain([0, 1000])
-				.range([1, 15])
-				.clamp(true);
-			return thickness(d.weight);
-        })*/
-		.attr("opacity", function (d) {
-            //return d.weight / 50;
-			var thickness = d3.scale.linear()
-				.domain([0, 1000])
-				.range([0.1, 1])
-				.clamp(true);
-			return thickness(d.weight);
-        })
         .attr("class", "link");
 
 	svg.selectAll(".node").remove();
@@ -127,8 +110,8 @@ function vis(links) {
         .attr("class", "node")
         .on("mouseover", mouseover)
         .on("mouseout", mouseout)
-		.on("click", mouseclick);
-		//.call(force.drag); //dragable
+		.on("click", mouseclick)
+    .call(force.drag); //dragable
 
     node.append("circle")
         .attr("r", 4)
@@ -209,22 +192,6 @@ function vis(links) {
         });
 
     function tick() {
-	
-        node
-			.classed("fixed", function (d) {
-				// fixing the nodes as desired
-				d.fixed = true;
-				d.x = 250 + 50 * (d.index % 10);
-				d.y = 40 + 50 * (d.index / 10)
-			})
-            .attr("transform", function (d) {
-                return "translate(" + d.x + "," + d.y + ")";
-				// this new return will keep the circles within the canvas
-				// TODO: create a radios variable to change the number 10
-                //return "translate(" + Math.max(10, Math.min(width - 10, d.x)) + "," + Math.max(10, Math.min(height - 10, d.y)) + ")";
-				
-            });
-		
         link
             .attr("x1", function (d) {
                 return d.source.x;
@@ -239,6 +206,14 @@ function vis(links) {
                 return d.target.y;
             });
 
+        node
+            .attr("transform", function (d) {
+                //return "translate(" + d.x + "," + d.y + ")";
+				// this new return will keep the circles within the canvas
+				// TODO: create a radios variable to change the number 10
+                return "translate(" + Math.max(10, Math.min(width - 10, d.x)) + "," + Math.max(10, Math.min(height - 10, d.y)) + ")";
+				
+            });
     }
 
     function mouseover(d, i) {
@@ -281,7 +256,7 @@ function vis(links) {
 			.attr("y", -14);
 
         // Apply effects on lines
-        /*svg.selectAll("line").filter(function (d) {
+        svg.selectAll("line").filter(function (d) {
             return d.source.index == i || d.target.index == i;
         }).each(function (dLink, iLink) {
             //unfade links and nodes connected to the current node
@@ -290,7 +265,7 @@ function vis(links) {
                 //.style("stroke-width", "2px")
                 .style("opacity", 1);
             //.style("stroke", "orange");
-        });*/
+        });
     }
 
     function mouseout() {
@@ -306,15 +281,14 @@ function vis(links) {
 			.attr("x", -3.5)
 			.attr("y", -3.5);
 
-        /*d3.select("svg#graph").selectAll("line")
+        d3.select("svg#graph").selectAll("line")
             .transition().duration(750)
             .style("opacity", 0.3);
-		*/
+
     }
 	
 	var clicked = false;	// true highlight, false unhighlight
 	function mouseclick(d) {
-	
 		if(!clicked) {
 			clicked = !clicked;
 			
@@ -331,7 +305,7 @@ function vis(links) {
 			
 			svg.selectAll('line')
 				.transition().duration(750)
-				.style("visibility", "visible");
+				.style("stroke-width", ".3px");
 		}
 	}
 	
@@ -355,11 +329,11 @@ function vis(links) {
 		
 		// Apply effects on lines
         svg.selectAll("line").filter(function (d) {
-            return !(d.source.index == i || d.target.index == i);
+            return (d.source.index == i || d.target.index == i);
         }).each(function (dLink, iLink) {
             d3.select(this)
                 .transition().duration(750)
-                .style("visibility", "hidden");
+                .style("stroke-width", "2px");
         });
 	}
 }
@@ -569,7 +543,9 @@ function table(d) {
 		dataList[d[i].source.index].weight++;
 		dataList[d[i].target.index].weight++;
 	}
-		
+	
+	console.log(dataList);
+	
 	var columns = ["id \u21c5", "Contacts \u21c5"];
 	
 	var valueFunc = function(data) {

@@ -14,8 +14,8 @@ body {
 .link {
 	fill: none;
 	stroke: #8B8B7A;
-	stroke-width: .3px;
-	opacity: .3;
+	stroke-width: 3px;
+	/*opacity: .3;*/
 }
 
 
